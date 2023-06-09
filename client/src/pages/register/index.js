@@ -11,9 +11,9 @@ const Register = ( )=> {
       
         <Formik
           initialValues={{
-            phoneNumber: '',
-            password: '',
-            email: ''
+            restaurantName:'',
+            email: '',
+            password: ''
           }}
           onSubmit={values => {
             const requestOptions = {
@@ -27,18 +27,18 @@ const Register = ( )=> {
         >
           {({ errors, touched }) => (
             <Form>
-              <Field name="phoneNumber" placeholder="phoneNumber"/>
-              {errors.phoneNumber && touched.phoneNumber ? (
-                <div>{errors.phoneNumber}</div>
+              <Field name="restaurantName" placeholder="Restaurant Name"/>
+              {errors.restaurantName && touched.restaurantName ? (
+                <div>{errors.restaurantName}</div>
               ) : null}
+              <br/>
+              <Field name="email"  placeholder="email"/>
+              {errors.email && touched.email ? <div>{errors.email}</div> : null}
               <br/>
               <Field name="password" placeholder="password"/>
               {errors.password && touched.password? (
                 <div>{errors.password}</div>
               ) : null}
-              <br/>
-              <Field name="email"  placeholder="email"/>
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
               <br/>
               
               <button type="submit">Submit</button>

@@ -1,11 +1,11 @@
 const mongoose= require('mongoose')
 
 const userSchema =  new mongoose.Schema({
+  restaurantName: {type: String}, 
   email: {type: String}, 
-  password:  {type: String}, 
-  phoneNumber: {type: String}, 
-  cartList: [{type: String}],
-  favList: [{type: String}]
+  password:  {type: String},
+  status:{type: String, default:"pending"} 
+  
   });
   const User = mongoose.model('User', userSchema);
 
