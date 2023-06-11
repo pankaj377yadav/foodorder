@@ -25,7 +25,7 @@ const Login = ( )=> {
       
         <Formik
           initialValues={{
-            restaurantName: '',
+            email: '',
             password: '',
           }}
           onSubmit={values => {
@@ -35,9 +35,9 @@ const Login = ( )=> {
         >
           {({ errors, touched }) => (
             <Form>
-              <Field name="restaurantName" placeholder="Restaurant Name"/>
-              {errors.restaurantName && touched.restaurantName ? (
-                <div>{errors.restaurantName}</div>
+              <Field name="email" placeholder="email"/>
+              {errors.email && touched.email ? (
+                <div>{errors.email}</div>
               ) : null}
               <br/>
               <Field name="password" placeholder="password"/>
