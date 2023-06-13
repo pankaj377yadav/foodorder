@@ -1,9 +1,13 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
+import{useSelector} from 'react-redux'
 
 
 const Register = ( )=> {
+  const z = useSelector( state => state.user)
+
+  console.log(z)
    
     return (
         <div>
@@ -13,7 +17,8 @@ const Register = ( )=> {
           initialValues={{
             restaurantName:'',
             email: '',
-            password: ''
+            password: '',
+            userType:'',
           }}
           onSubmit={values => {
             const requestOptions = {
@@ -38,6 +43,11 @@ const Register = ( )=> {
               <Field name="password" placeholder="password"/>
               {errors.password && touched.password? (
                 <div>{errors.password}</div>
+              ) : null}
+              <br/>
+              <Field name="userType" placeholder="User Type"/>
+              {errors.userType&& touched.userType? (
+                <div>{errors.userType}</div>
               ) : null}
               <br/>
               

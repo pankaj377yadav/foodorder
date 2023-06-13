@@ -22,13 +22,14 @@ const jwt = require('jsonwebtoken');
  console.log(req.body)
   const data = await User.findOne({email: req.body.email})
 
-  const isMatched = await bcrypt.compare(req.body.email, data.email);
+  const isMatched = await bcrypt.compare(req.body.email, data.Password);
 
-  const token = jwt.sign({ email: req.body.email }, process.env.SECRET_KEY);
+ 
 
-  console.log(token)
-  
   if(data && isMatched){
+    const token = jwt.sign({ email: req.body.email }, process.env.SECRET_KEY);
+    console.log(token)
+    
     res.json({
     isLoggedIn: true,
     msg:  "success",

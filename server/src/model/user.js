@@ -1,9 +1,10 @@
 const mongoose= require('mongoose')
 
 const userSchema =  new mongoose.Schema({
-  restaurantName: {type: String}, 
+  restaurantName: {type: String},
   email: {type: String}, 
   password:  {type: String},
+  userType:{type: String},
   status:{type: String, default:"pending"} 
   
   });
