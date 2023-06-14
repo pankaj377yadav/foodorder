@@ -1,11 +1,15 @@
 import { Formik, Form, Field } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import Link from 'next/link';
 import {changeToken} from '../../redux/reducers/userSlice'
 import { useDispatch , useSelector} from 'react-redux';
+import { useRouter } from 'next/router';
 
 
 const Login = ( )=> {
+  const router = useRouter()
+  const [error,setError]=useState('')
   const {token} = useSelector(state => state.user)
 
   const dispatch = useDispatch();
@@ -18,11 +22,12 @@ const Login = ( )=> {
     };
     const res = await fetch('http://localhost:3001/login', requestOptions)
     const data = await res.json()
-    dispatch(chageToken(data))
-  
-    if(data.isLoggedIn){
-      
+    if (data.isLoggedIn){
+      dispatch(changeToken(data))
+      router.push('/users')
 
+    }else{
+      setError(data.msg)
     }
 
     }
@@ -51,6 +56,7 @@ const Login = ( )=> {
                 <div>{errors.password}</div>
               ) : null}
               <br/>
+              <span> {error}</span>
               <button type="submit">Submit</button>
              Dont have an account yet ? 
              <Link href="/register">Sing Up</Link>

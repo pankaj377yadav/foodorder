@@ -9,12 +9,12 @@ const UserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    changetoken: (state, actions) => {
+    changeToken: (state, actions) => {
       state.token = actions.payload.token
       }
   }
   
 });
 
-export const { token} = UserSlice.actions;
+export const {changeToken} = UserSlice.actions;
 export default UserSlice.reducer;

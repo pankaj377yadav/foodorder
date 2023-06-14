@@ -19,28 +19,38 @@ const jwt = require('jsonwebtoken');
 
  
  const loginUser=  async (req,res)=>{
- console.log(req.body)
-  const data = await User.findOne({email: req.body.email})
-
-  const isMatched = await bcrypt.compare(req.body.email, data.Password);
-
- 
-
-  if(data && isMatched){
-    const token = jwt.sign({ email: req.body.email }, process.env.SECRET_KEY);
-    console.log(token)
-    
-    res.json({
-    isLoggedIn: true,
-    msg:  "success",
-    id: data._id
-    })
-  }else{
-    res.json({
-      isLoggedIn: false,
-      msg: "user doesnnot exist"
-    })
+  try{
+    // step 1: check if the phonenumber/username/email exists or not
+    const data = await User.findOne({email: req.body.email})
+    //step 2: check if the password is matched
+    if(data){
+      const isMatched = await bcrypt.compare(req.body.password, data.password)
+      // getnerate a token for the user
+      if(isMatched){
+        const token = jwt.sign({ email:  req.body.email}, process.env.SECRET_KEY);
+        console.log(token)
+        res.json({
+        isLoggedIn: true,
+        msg:  "success",
+        id: data._id,
+        token: token
+        })
+      }else{
+        res.json({
+          isLoggedIn: false,
+          msg: "invalid password"
+        })
+      }
+    }else{
+      res.json({
+        isLoggedIn: false,
+        msg: "user doesnnot exist"
+      })
+    }
+  }catch(err){
+    console.log(err)
   }
+
 
 }
 
