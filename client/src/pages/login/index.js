@@ -2,7 +2,7 @@ import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import Link from 'next/link';
-import {changeToken} from '../../redux/reducers/userSlice'
+import {setUserDetails} from '../../redux/reducers/userSlice'
 import { useDispatch , useSelector} from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -23,7 +23,7 @@ const Login = ( )=> {
     const res = await fetch('http://localhost:3001/login', requestOptions)
     const data = await res.json()
     if (data.isLoggedIn){
-      dispatch(changeToken(data))
+      dispatch(setUserDetails(data))
       router.push('/users')
 
     }else{

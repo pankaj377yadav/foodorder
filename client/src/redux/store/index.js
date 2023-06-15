@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 // import logger from 'redux-logger'
 // import boxSlice from "./features/box/box.slice";
 import userSlice from "../reducers/userSlice";
+import logger from "redux-logger";
 
 const reducer = combineReducers({
   user: userSlice
@@ -11,6 +12,7 @@ const reducer = combineReducers({
 
 const store = configureStore({
   reducer,
+  middleware: [logger]
 });
 
 export default store;

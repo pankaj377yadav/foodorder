@@ -31,8 +31,10 @@ const jwt = require('jsonwebtoken');
         console.log(token)
         res.json({
         isLoggedIn: true,
+        email:data.email,
         msg:  "success",
         id: data._id,
+        role: data.role,
         token: token
         })
       }else{

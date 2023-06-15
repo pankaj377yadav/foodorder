@@ -19,6 +19,7 @@ const Register = ( )=> {
             email: '',
             password: '',
             userType:'',
+            role:'',
           }}
           onSubmit={values => {
             const requestOptions = {
@@ -49,6 +50,9 @@ const Register = ( )=> {
               {errors.userType&& touched.userType? (
                 <div>{errors.userType}</div>
               ) : null}
+              <br/>
+              <Field name="role"  placeholder="role"/>
+              {errors.role && touched.role ? <div>{errors.role}</div> : null}
               <br/>
               
               <button type="submit">Submit</button>

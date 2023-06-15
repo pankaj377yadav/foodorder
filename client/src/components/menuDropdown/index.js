@@ -6,8 +6,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+import {resetUser} from '../../redux/reducers/userSlice';
 
 export default function BasicMenu() {
+  const dispatch =useDispatch()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,7 +21,7 @@ export default function BasicMenu() {
   };
 
   return (
-    <div>
+    <div  style={{float:'right'}}>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -43,7 +46,7 @@ export default function BasicMenu() {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={(() => dispatch(resetUser()))}>Logout</MenuItem>
       </Menu>
     </div>
   );

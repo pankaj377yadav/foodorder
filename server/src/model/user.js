@@ -5,6 +5,7 @@ const userSchema =  new mongoose.Schema({
   email: {type: String}, 
   password:  {type: String},
   userType:{type: String},
+  role:{type: String},
   status:{type: String, default:"pending"} 
   
   });
