@@ -24,7 +24,7 @@ const Login = ( )=> {
     const data = await res.json()
     if (data.isLoggedIn){
       dispatch(setUserDetails(data))
-      router.push('/users')
+      // router.push('/users')
 
     }else{
       setError(data.msg)
